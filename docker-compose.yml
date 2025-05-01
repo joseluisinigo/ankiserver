@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  anki-sync-server:
+    build: .
+    container_name: anki-sync-server
+    ports:
+      - "27701:27701"
+    volumes:
+      - ./data:/app/data  # Persistent sync data
+      - ./anki-bundled:/app/anki-bundled  # Mounted bundled Anki library
+      - ./ankisyncd.conf:/app/ankisyncd.conf  # Mounted configuration
+    restart: unless-stopped
